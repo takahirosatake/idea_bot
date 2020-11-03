@@ -16,7 +16,16 @@ class Api::V1::IdeasController < Api::V1::BaseController
         ideas = { data: serializable_resource.as_json }
         render json: ideas
   end
-
+  
+  def create
+    idea = Idea.new(idea_params)
+    if idea.save
+      render json: { status: 201 }
+    else
+      render json: { status: 422 }
+    end
+  end
+  
   private
     def idea_params
       params.require(:idea).permit(:category_id, :body)

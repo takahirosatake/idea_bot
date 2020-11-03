@@ -5,7 +5,6 @@ RSpec.describe Category, type: :model do
     context '登録できている場合' do
       it "nameがあれば保存できる" do
         category = build(:category)
-        p category
         expect(category).to be_valid
       end
     end 
